@@ -9,7 +9,9 @@ var uniqid = require("uniqid");
 router.post("/uploadgame", function(req, res, next) {
   var zip = new AdmZip(req.files.gamefile.data);
   const gamefolder = `/games/${uniqid()}`;
+  console.log(path.resolve(__dirname, `../public${gamefolder}`));
   const gamepath = path.resolve(__dirname, `../public${gamefolder}`);
+
   fs.mkdirSync(gamepath);
   zip.extractAllTo(gamepath);
   const filepath =
