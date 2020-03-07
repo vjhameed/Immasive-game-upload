@@ -12,7 +12,7 @@ router.post("/uploadgame", function(req, res, next) {
   console.log(path.resolve(__dirname, `../public${gamefolder}`));
   const gamepath = path.resolve(__dirname, `../public${gamefolder}`);
 
-  fs.mkdirSync(gamepath);
+  fs.mkdirSync(gamepath, { recursive: true });
   zip.extractAllTo(gamepath);
   const filepath =
     req.protocol + "://" + req.get("host") + gamefolder + "/index.html";
